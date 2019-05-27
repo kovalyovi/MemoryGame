@@ -1,0 +1,199 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.center {
+    text-align: center !important;
+}
+
+.finished {
+    display: none !important;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 1.5em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    background: #02b3e4;
+    cursor: default;
+    animation: open-card .3s;
+}
+
+@keyframes open-card {
+    0%   { background: #2e3d49; transform: rotateY(-180deg); color: #2e3d49; }
+    50%  { background: #2e3d49; transform: rotateY(-90deg);  color: #2e3d49; ;  box-shadow: none;}
+    100% { background: #02b3e4; transform: rotateY(0); color: #fff; }
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.not-match {
+    cursor: default;
+    animation: not-match 0.8s;
+}
+
+@keyframes not-match {
+    0%  { background: #f95b3c; transform: rotate(-20deg)}
+    15% { transform: rotate(20deg)}
+    30% { transform: rotate(-10deg)}
+    45% { transform: rotate(10deg)}
+    60% { transform: rotate(-5deg)}
+    70% { background: #f95b3c; transform: rotate(0deg)}
+    75% { background: #2e3d49; transform: rotateY(0deg);}
+    85% { transform: rotateY(90deg); }
+    100% { transform: rotateY(180deg);}
+
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+    animation: match-card .8s;
+}
+
+@keyframes match-card {
+    0%   { transform: scale(1, 1) }
+    40%  { transform: scale(1.18, 0.3) }
+    55%  { transform: scale(0.95, 1.2) }
+    70%  { transform: scale(1.13, 0.6) }
+    82%  { transform: scale(0.98, 1.1) }
+    91%  { transform: scale(1.06, 0.8) }
+    100% { transform: scale(1, 1) }
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    padding: 0;
+    margin: 0 5px 0 0;
+    display: inline-block;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+}
+
+.card:not(.match):not(.open):not(.not-match):hover {
+    box-shadow: inset 0 0 15px 10px #02b3e4;
+}
+
+/*
+Styles for the timer
+ */
+.timer {
+    display: inherit;
+}
+
+.timer div {
+    width: 24px;
+    height: 25px;
+    padding: 0 2px;
+}
+
+/*
+Styles for the winning message
+ */
+
+.won {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.won p {
+    font-family: "Arial", serif;
+    font-size: 16px;
+    margin: 0 0 5px;
+}
+
+.won button {
+    font-size: 20px;
+    margin: 30px 0;
+    color: white;
+    background: #02ccba;
+    height: 50px;
+    width: 150px;
+    border-radius: 12px;
+    border: none;
+}
+
+.won button:hover {
+    cursor: pointer;
+    background: #13aeb8;
+}
